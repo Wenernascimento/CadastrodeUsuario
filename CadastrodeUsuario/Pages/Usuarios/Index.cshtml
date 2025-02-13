@@ -5,22 +5,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Início</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-outline-success">Criar Novo</a>
 </p>
+
+<form method="get">
+    <div class="input-group mb-3">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Digite o nome para buscar..." value="@Request.Query["searchTerm"]" />
+        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Usuario[0].Name)
+                @Html.DisplayNameFor(model => model.Usuario[0].Name) 📝
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Usuario[0].Email)
+                @Html.DisplayNameFor(model => model.Usuario[0].Email) 📨
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Usuario[0].Phone)
+                @Html.DisplayNameFor(model => model.Usuario[0].Phone) ☎️ 📱
             </th>
             <th></th>
         </tr>

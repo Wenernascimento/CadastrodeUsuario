@@ -2,10 +2,10 @@
 @model CadastrodeUsuario.Pages.Usuarios.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar";
 }
 
-<h1>Create</h1>
+<h1>Criar</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -28,15 +28,16 @@
                 <input asp-for="Usuario.Phone" class="form-control" />
                 <span asp-validation-for="Usuario.Phone" class="text-danger"></span>
             </div>
+         <br/>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br/>
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index" class="btn btn-outline-success">Voltar</a>
 </div>
 
 @section Scripts {

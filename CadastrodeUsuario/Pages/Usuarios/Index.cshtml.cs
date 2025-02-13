@@ -19,11 +19,26 @@ namespace CadastrodeUsuario.Pages.Usuarios
             _context = context;
         }
 
-        public IList<Usuario> Usuario { get;set; } = default!;
+        public IList<Usuario> Usuario { get; set; } = default!;
+        public string SearchTerm { get; set; } = string.Empty;  // Para armazenar o termo de pesquisa
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchTerm)
         {
-            Usuario = await _context.Usuario.ToListAsync();
+            SearchTerm = searchTerm ?? string.Empty;
+
+            // Verifica se há um termo de pesquisa e faz a comparação sem distinguir maiúsculas/minúsculas
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Usuario = await _context.Usuario
+                    .Where(u => EF.Functions.Like(u.Name.ToLower(), "%" + SearchTerm.ToLower() + "%"))  // Realiza a comparação ignorando maiúsculas/minúsculas
+                    .ToListAsync();
+            }
+            else
+            {
+                // Caso contrário, traz todos os usuários
+                Usuario = await _context.Usuario.ToListAsync();
+            }
         }
+
     }
 }
